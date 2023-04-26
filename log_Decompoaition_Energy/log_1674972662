@@ -1,0 +1,11 @@
+0.016910715194020938
+
+{'num_leaves': 20, 'max_depth': 200, 'min_child_samples': 70, 'learning_rate': 0.01, 'n_estimators': 120000, 'reg_lambda': 0, 'colsample_bytree': 0.4, 'n_jobs': 8}
+
+
+{'_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_74000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.013663556180264009,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_80000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.013630697016230837,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_90000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.013589180916009247,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_100000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.013559174005365958,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_110000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.013539644119427145,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_200_min_child_samples_70_n_estimators_120000_n_jobs_8_num_leaves_20_reg_lambda_0': 0.01352452238052707}

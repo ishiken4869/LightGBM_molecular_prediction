@@ -1,0 +1,68 @@
+
+#import argparse
+import deepchem as dc
+from lightgbm import LGBMRegressor
+
+TRAIN = "../data/smiles_all_property.csv"
+TARGET_COL = "wavelength"
+SMILES_COL = "smiles"
+
+
+def model_builder(model_params, model_dir):
+    estimator = LGBMRegressor()
+    estimator.set_params(**model_params)
+    return dc.models.SklearnModel(estimator, model_dir)
+
+
+def main():
+
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-train", type=str, required=True, help="trainig data file(csv)")
+    parser.add_argument("-target_col", type=str, required=True)
+    parser.add_argument("-smiles_col", type=str, default="smiles")
+    args = parser.parse_args()
+    '''
+
+    featurizer = dc.feat.RDKitDescriptors()
+
+    # 学習データの読み込み
+    loader = dc.data.CSVLoader(tasks=[TARGET_COL],
+                               feature_field=SMILES_COL,
+                               featurizer=featurizer)
+
+    dataset = loader.create_dataset(TRAIN)
+
+    splitter = dc.splits.IndexSplitter(dataset)
+
+    train_dataset, valid_dataset, test_dataset = splitter.train_valid_test_split(dataset, frac_train=0.8,
+                                                                                 frac_valid=0.1, frac_test=0.1)
+    transformers = [
+        dc.trans.NormalizationTransformer(transform_y=True,
+                                          dataset=train_dataset)
+    ]
+
+    for transformer in transformers:
+        train_dataset = transformer.transform(train_dataset)
+        valid_dataset = transformer.transform(valid_dataset)
+        test_dataset = transformer.transform(test_dataset)
+
+    print(train_dataset.X.shape)
+    print(valid_dataset.X.shape)
+    print(test_dataset.X.shape)
+
+    metric = dc.metrics.Metric(dc.metrics.mean_absolute_error)
+    optimizer = dc.hyper.HyperparamOpt(model_builder, verbose=True)
+    params_dict = {
+             "num_leaves": [50, 100, 150, 200],
+             "max_depth": [50],
+             'min_data_in_leaf': [50],
+             "learning_rate": [0.01],
+             "n_estimators": [2000, 2500, 3000],
+             'reg_lambda': [0],
+        }
+    best_model, best_model_hyperparams, all_model_results = optimizer.hyperparam_search(params_dict, train_dataset, valid_dataset, transformers, metric=metric)
+
+
+if __name__ == "__main__":
+    main()

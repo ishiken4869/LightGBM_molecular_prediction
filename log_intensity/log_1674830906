@@ -1,0 +1,14 @@
+MAE:0.6734211814841432
+
+{'num_leaves': 110, 'max_depth': 350, 'min_child_samples': 4, 'learning_rate': 0.01, 'n_estimators': 40000, 'reg_lambda': 0, 'colsample_bytree': 0.4, 'n_jobs': 8}
+
+
+{'_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_350_min_child_samples_2_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6193073655264127,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_350_min_child_samples_4_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6180044421270317,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_350_min_child_samples_6_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6190410951405283,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_400_min_child_samples_2_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6193073655264127,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_400_min_child_samples_4_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6180044421270317,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_400_min_child_samples_6_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6190410951405283,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_450_min_child_samples_2_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6193073655264127,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_450_min_child_samples_4_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6180044421270317,
+ '_colsample_bytree_0.400000_learning_rate_0.010000_max_depth_450_min_child_samples_6_n_estimators_40000_n_jobs_8_num_leaves_110_reg_lambda_0': 0.6190410951405283}

@@ -1,0 +1,6 @@
+{'num_leaves': 70, 'max_depth': 70, 'min_child_samples': 30, 'learning_rate': 0.01, 'n_estimators': 40000, 'reg_lambda': 0, 'colsample_bytree': 1}
+
+
+{'_colsample_bytree_1_learning_rate_0.010000_max_depth_70_min_child_samples_30_n_estimators_30000_num_leaves_70_reg_lambda_0': 16.095048446409475,
+ '_colsample_bytree_1_learning_rate_0.010000_max_depth_70_min_child_samples_30_n_estimators_40000_num_leaves_70_reg_lambda_0': 16.08903074009846,
+ '_colsample_bytree_1_learning_rate_0.010000_max_depth_70_min_child_samples_30_n_estimators_50000_num_leaves_70_reg_lambda_0': 16.091525180458056}
