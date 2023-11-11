@@ -1,3 +1,5 @@
-.joblib
-.pth
-.pt
+*.joblib
+*.pth
+*.pt
+
+data/
