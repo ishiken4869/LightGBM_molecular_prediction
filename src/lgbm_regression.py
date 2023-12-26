@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 TRAIN = "../data/smiles_all_property.csv"
-TARGET_COL = "intensity"
+TARGET_COL = "Decomposition Energy"
 SMILES_COL = "smiles"
 PROPERTY = TARGET_COL
 
@@ -60,6 +60,8 @@ def main():
     else:
         dataset = loader.create_dataset(TRAIN, data_dir=DATA_DIR)
 
+    print("Data loaded.")
+
     splitter = dc.splits.IndexSplitter()
 
     train_dataset, valid_dataset, test_dataset = splitter.train_valid_test_split(dataset, frac_train=0.6, frac_valid=0.2, frac_test=0.2)
@@ -78,12 +80,12 @@ def main():
 
     params_dict = {
             #'boosting_type': ['rf'],
-            'num_leaves': [110],
+            'num_leaves': [20],
             'criterion': ['absolute_error'],
-            'max_depth': [350],
-            'min_child_samples': [4],
+            'max_depth': [200],
+            'min_child_samples': [70],
             'learning_rate': [0.01],
-            'n_estimators': [40000],
+            'n_estimators': [400000],
             'reg_lambda': [0],
             'colsample_bytree': [0.4],
             'n_jobs': [multiprocessing.cpu_count()],
@@ -102,9 +104,11 @@ def main():
     # モデルの保存
     # best_model.save()
     save_to_disk(best_model, MODEL_DIR + "/model.joblib")
+    print("model saved.")
 
     #loaded_model = dc.models.SklearnModel(model=LGBMRegressor(), model_dir=MODEL_DIR)
     loaded_model = load_from_disk(MODEL_DIR + "/model.joblib")
+    print("model loaded.")
 
     time_sta = time.perf_counter()
     predicted_test = loaded_model.predict(test_dataset, transformers=transformers)
@@ -117,9 +121,9 @@ def main():
     true_test = test_dataset.y
 
 
-    dc.metrics.mean_absolute_error(true_test, predicted_test)
-    print(best_model_hyperparams)
-    all_model_results
+    print("MAE: {}".format(dc.metrics.mean_absolute_error(true_test, predicted_test)))
+
+    print("best hyperparamers: {}".format(best_model_hyperparams))
 
     plt.scatter(true_test, predicted_test, s=1)
     plt.xlabel('label')
@@ -127,6 +131,8 @@ def main():
     plt.title(TARGET_COL)
     plt.grid(True)
     plt.savefig("../scatter/" + PROPERTY + "/scatter.png")
+
+    print("scatter plot saved.")
 
     #from joblib import dump, load
     #dump(best_model, "../model/" + PROPERTY + "/model.joblib")
