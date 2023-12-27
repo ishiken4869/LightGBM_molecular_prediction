@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 TRAIN = "../data/smiles_all_property.csv"
-TARGET_COL = "Decomposition Energy"
+TARGET_COL = "HOMO/LUMO gap"
 SMILES_COL = "smiles"
 PROPERTY = TARGET_COL
 
@@ -80,12 +80,12 @@ def main():
 
     params_dict = {
             #'boosting_type': ['rf'],
-            'num_leaves': [20],
+            'num_leaves': [80],
             'criterion': ['absolute_error'],
-            'max_depth': [200],
-            'min_child_samples': [70],
+            'max_depth': [100],
+            'min_child_samples': [60],
             'learning_rate': [0.01],
-            'n_estimators': [400000],
+            'n_estimators': [32000],
             'reg_lambda': [0],
             'colsample_bytree': [0.4],
             'n_jobs': [multiprocessing.cpu_count()],
